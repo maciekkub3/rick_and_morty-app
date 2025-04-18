@@ -10,6 +10,7 @@ class RickAndMortyRepository @Inject constructor (
     private val rickAndMortyService: RickAndMortyService
 ) {
 
+
     suspend fun getCharacters(): CharacterDto {
         return withContext(Dispatchers.IO) {
             rickAndMortyService.getCharacters()
