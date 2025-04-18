@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.rickandmorty.navigation.Navigation
 import com.example.rickandmorty.ui.AppBar.BottomAppBar
-import com.example.rickandmorty.ui.Screens.MainScreen.MainScreen
 import com.example.rickandmorty.ui.theme.RickAndMortyTheme
 import dagger.hilt.android.AndroidEntryPoint
 

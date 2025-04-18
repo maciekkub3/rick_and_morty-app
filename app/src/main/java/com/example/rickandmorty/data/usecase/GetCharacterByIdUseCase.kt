@@ -1,6 +1,5 @@
 package com.example.rickandmorty.data.usecase
 
-import com.example.rickandmorty.data.domain.models.Character
 import com.example.rickandmorty.data.domain.models.Result
 import com.example.rickandmorty.data.network.RickAndMortyRepository
 import javax.inject.Inject

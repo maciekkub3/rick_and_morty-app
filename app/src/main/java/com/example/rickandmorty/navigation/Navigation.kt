@@ -8,7 +8,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.toRoute
 import com.example.rickandmorty.ui.Screens.CharacterDetailsScreen.CharacterDetailsScreen
 import com.example.rickandmorty.ui.Screens.CharacterDetailsScreen.CharacterDetailsViewModel
 import com.example.rickandmorty.ui.Screens.MainScreen.MainScreen
