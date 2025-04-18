@@ -20,6 +20,4 @@ class RickAndMortyRepository @Inject constructor (
             rickAndMortyService.getCharacterById(id)
         }
     }
-
-
 }
