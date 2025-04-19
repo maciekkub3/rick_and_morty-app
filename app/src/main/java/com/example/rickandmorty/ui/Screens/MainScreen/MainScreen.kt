@@ -55,7 +55,6 @@ fun MainScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-
             .background(BackgroundColor)
             .padding(16.dp)
 
