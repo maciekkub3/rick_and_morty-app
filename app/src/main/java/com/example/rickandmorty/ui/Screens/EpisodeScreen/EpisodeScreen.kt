@@ -1,6 +1,5 @@
 package com.example.rickandmorty.ui.Screens.EpisodeScreen
 
-import android.R.attr.name
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable

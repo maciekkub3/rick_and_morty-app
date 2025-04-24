@@ -2,7 +2,6 @@ package com.example.rickandmorty.ui.Screens.EpisodeScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmorty.data.usecase.GetCharacterUseCase
 import com.example.rickandmorty.data.usecase.GetEpisodeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
