@@ -1,4 +1,4 @@
-package com.example.rickandmorty.ui.Screens.MainScreen
+package com.example.rickandmorty.ui.Screens.CharacterScreen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.example.rickandmorty.data.domain.models.Result
+import com.example.rickandmorty.data.domain.models.Character
 import com.example.rickandmorty.R
 import com.example.rickandmorty.navigation.CharacterDetailsScreenRoute
 import com.example.rickandmorty.ui.theme.BackgroundColor
@@ -49,7 +49,7 @@ import com.example.rickandmorty.ui.theme.onSecondaryColor
 fun MainScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
-    state: MainViewState
+    state: CharacterViewState
 ) {
 
     Column(
@@ -108,10 +108,9 @@ fun MainScreen(
     }
 }
 
-@SuppressLint("InvalidColorHexValue")
 @Composable
 fun CharacterList(
-    characters: List<Result>,
+    characters: List<Character>,
     onCharacterClick: (Int) -> Unit
 ) {
     LazyVerticalGrid(
@@ -119,75 +118,81 @@ fun CharacterList(
     ) {
         items(characters.size) { index ->
             val character = characters[index]
-            Box(
-                contentAlignment = Alignment.Center
+            CharacterCard(character = character, onCharacterClick = onCharacterClick)
+        }
+    }
+}
+
+
+@SuppressLint("InvalidColorHexValue")
+@Composable
+fun CharacterCard(
+    character: Character,
+    onCharacterClick: (Int) -> Unit
+) {
+    Box(
+        contentAlignment = Alignment.Center
+    ) {
+        Card(
+            modifier = Modifier
+                .padding(8.dp)
+                .shadow(4.dp, RoundedCornerShape(8.dp))
+                .clickable {
+                    onCharacterClick(character.id)
+                }
+        ) {
+            Column(
+                modifier = Modifier
+                    .background(PrimaryColor)
             ) {
-                Card(
+                AsyncImage(
+                    model = character.image,
+                    placeholder = painterResource(R.drawable.placeholder),
+                    contentDescription = "Photo of ${character.name}",
                     modifier = Modifier
-                        .padding(8.dp)
-                        .shadow(4.dp, RoundedCornerShape(8.dp))
-                        .clickable {
-                            onCharacterClick(character.id)
-                        }
+                        .fillMaxWidth()
+                        .padding(horizontal = 5.dp)
+                        .padding(top = 5.dp)
+                        .aspectRatio(1f)
+                        .clip(RoundedCornerShape(8.dp)),
+                    contentScale = ContentScale.Crop,
+                )
+                Text(
+                    text = character.name,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+
+                val statusColor = when (character.status) {
+                    "Alive" -> Color.Green
+                    "Dead" -> Color.Red
+                    else -> Color.Yellow
+                }
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .padding(start = 5.dp)
                 ) {
-
-                    Column(
+                    Box(
                         modifier = Modifier
-                            .background(PrimaryColor)
-                    ) {
-                        AsyncImage(
-                            model = character.image,
-                            placeholder = painterResource(R.drawable.placeholder),
-                            contentDescription = "Photo of ${character.name}",
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 5.dp)
-                                .padding(top = 5.dp)
-                                .aspectRatio(1f)
-                                .clip(RoundedCornerShape(8.dp)),
-                            contentScale = ContentScale.Crop,
-
-                            )
-                        Text(
-                            text = character.name,
-                            fontSize = 15.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier
-                                .padding(start = 5.dp)
-
-
-                        )
-
-                        val statusColor = when (character.status) {
-                            "Alive" -> Color.Green
-                            "Dead" -> Color.Red
-                            else -> Color.Yellow
-                        }
-
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier
-                                .padding(start = 5.dp)
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .size(7.dp)
-                                    .clip(CircleShape)
-                                    .background(statusColor)
-                            )
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Text(
-                                text = "${character.status} - ${character.species}",
-                                color = Color.White,
-                                fontSize = 13.sp,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
-                            )
-                        }
-                    }
+                            .size(7.dp)
+                            .clip(CircleShape)
+                            .background(statusColor)
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        text = "${character.status} - ${character.species}",
+                        color = Color.White,
+                        fontSize = 13.sp,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
                 }
             }
         }
