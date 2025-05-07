@@ -1,23 +1,17 @@
 package com.example.rickandmorty.data.domain.models
+
+data class CharacterResponse(
+    val info: PaginationInfo,
+    val results: List<Character>
+)
+
 data class Character(
-    val info: Info,
-    val results: List<Result>
-)
-
-data class Info(
-    val count: Int,
-    val next: String?,
-    val pages: Int,
-    val prev: Any?
-)
-
-data class Result(
     val created: String,
     val episode: List<String>,
     val gender: String,
     val id: Int,
     val image: String,
-    val location: Location,
+    val location: CharacterLocation,
     val name: String,
     val origin: Origin,
     val species: String,
@@ -26,7 +20,7 @@ data class Result(
     val url: String
 )
 
-data class Location(
+data class CharacterLocation(
     val name: String,
     val url: String
 )

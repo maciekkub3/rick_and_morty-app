@@ -1,18 +1,13 @@
 package com.example.rickandmorty.data.network.models
 
+import com.example.rickandmorty.data.domain.models.PaginationInfoDto
+
+data class CharacterResponseDto(
+    val info: PaginationInfoDto,
+    val results: List<CharacterDto>
+)
+
 data class CharacterDto(
-    val info: InfoDto,
-    val results: List<ResultDto>
-)
-
-data class InfoDto(
-    val count: Int,
-    val next: String?,
-    val pages: Int,
-    val prev: Any?
-)
-
-data class ResultDto(
     val created: String,
     val episode: List<String>,
     val gender: String,

@@ -1,4 +1,4 @@
-package com.example.rickandmorty.ui.Screens.MainScreen
+package com.example.rickandmorty.ui.Screens.CharacterScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,12 +10,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainScreenViewModel @Inject constructor(
+class CharacterScreenViewModel @Inject constructor(
     private val getCharacterUseCase: GetCharacterUseCase,
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(MainViewState())
-    val state: StateFlow<MainViewState> = _state
+    private val _state = MutableStateFlow(CharacterViewState())
+    val state: StateFlow<CharacterViewState> = _state
 
     init {
         viewModelScope.launch {
@@ -27,10 +27,10 @@ class MainScreenViewModel @Inject constructor(
         _state.value = _state.value.copy(isLoading = true, error = null)
         try {
             val response = getCharacterUseCase()
-            _state.value = MainViewState(isLoading = false, characters = response.results)
+            _state.value = CharacterViewState(isLoading = false, characters = response.results)
         } catch (e: Exception) {
             _state.value =
-                MainViewState(isLoading = false, error = e.message ?: "Error fetching characters")
+                CharacterViewState(isLoading = false, error = e.message ?: "Error fetching characters")
         }
     }
 }

@@ -9,32 +9,26 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.rickandmorty.ui.theme.onSecondaryColor
 import com.example.rickandmorty.R
 import com.example.rickandmorty.ui.theme.BackgroundColor
 import com.example.rickandmorty.ui.theme.PrimaryColor
 
 
-@Preview
+
 @Composable
 fun BottomNavigationBar(
-/*    onCharactersClick: () -> Unit,
+    onCharactersClick: () -> Unit,
     onEpisodesClick: () -> Unit,
-    onLocationClick: () -> Unit*/
+    onLocationClick: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -55,7 +49,7 @@ fun BottomNavigationBar(
                 horizontalArrangement = Arrangement.SpaceAround,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(onClick = {}) {
+                IconButton(onClick = {onCharactersClick()}) {
                     Icon(
                         painter = painterResource(id = R.drawable.characters),
                         contentDescription = "Characters",
@@ -63,7 +57,7 @@ fun BottomNavigationBar(
                         modifier = Modifier.size(24.dp)
                     )
                 }
-                IconButton(onClick = {}) {
+                IconButton(onClick = {onEpisodesClick()}) {
                     Icon(
                         painter = painterResource(id = R.drawable.episodes),
                         contentDescription = "Episodes",
@@ -71,7 +65,7 @@ fun BottomNavigationBar(
                         modifier = Modifier.size(24.dp)
                     )
                 }
-                IconButton(onClick = {}) {
+                IconButton(onClick = {onLocationClick()}) {
                     Icon(
                         painter = painterResource(id = R.drawable.location),
                         contentDescription = "Locations",
