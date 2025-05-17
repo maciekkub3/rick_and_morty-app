@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.rickandmorty.data.domain.models.Episode
+import com.example.rickandmorty.navigation.EpisodeDetailsScreenRoute
 import com.example.rickandmorty.ui.theme.BackgroundColor
 import com.example.rickandmorty.ui.theme.PrimaryColor
 
@@ -59,7 +60,9 @@ fun EpisodeScreen(
             else -> {
                 EpisodeList(
                     episodes = state.episodes,
-                    onEpisodeClick = {}
+                    onEpisodeClick = { episodeId ->
+                        navController.navigate(EpisodeDetailsScreenRoute(episodeId = episodeId))
+                    }
                 )
             }
         }

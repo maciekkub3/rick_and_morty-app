@@ -6,4 +6,5 @@ data class EpisodeViewState(
     val isLoading: Boolean = false,
     val episodes: List<Episode> = emptyList(),
     val error: String? = null,
+    val selectedSeason: Int? = null
 )

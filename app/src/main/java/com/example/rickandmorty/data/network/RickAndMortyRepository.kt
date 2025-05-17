@@ -39,4 +39,9 @@ class RickAndMortyRepository @Inject constructor (
             rickAndMortyService.getLocations()
         }
     }
+    suspend fun getMultipleCharactersById(ids: List<Int>): List<Character> {
+        return withContext(Dispatchers.IO) {
+            rickAndMortyService.getMultipleCharactersById(ids)
+        }
+    }
 }

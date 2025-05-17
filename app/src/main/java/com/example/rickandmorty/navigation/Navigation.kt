@@ -13,6 +13,8 @@ import com.example.rickandmorty.ui.Screens.CharacterDetailsScreen.CharacterDetai
 import com.example.rickandmorty.ui.Screens.CharacterScreen.MainScreen
 import androidx.compose.runtime.getValue
 import com.example.rickandmorty.ui.Screens.CharacterScreen.CharacterScreenViewModel
+import com.example.rickandmorty.ui.Screens.EpisodeDetailsScreen.EpisodeDetailsScreen
+import com.example.rickandmorty.ui.Screens.EpisodeDetailsScreen.EpisodeDetailsViewModel
 import com.example.rickandmorty.ui.Screens.EpisodeScreen.EpisodeScreen
 import com.example.rickandmorty.ui.Screens.EpisodeScreen.EpisodeScreenViewModel
 import com.example.rickandmorty.ui.Screens.LocationScreen.LocationScreen
@@ -48,6 +50,13 @@ fun Navigation(
             val state by viewModel.state.collectAsState()
             LocationScreen(navController = navController, state = state)
         }
+        composable<EpisodeDetailsScreenRoute> {
+            val viewModel: EpisodeDetailsViewModel = hiltViewModel()
+            val state by viewModel.state.collectAsStateWithLifecycle()
+            EpisodeDetailsScreen(navController = navController, state = state)
+        }
+
+
 
     }
 }
