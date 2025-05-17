@@ -26,7 +26,6 @@ class CharacterDetailsViewModel @Inject constructor(
 
     init {
         fetchCharacter(args.characterId)
-
     }
 
     private fun fetchCharacter(id: Int) {

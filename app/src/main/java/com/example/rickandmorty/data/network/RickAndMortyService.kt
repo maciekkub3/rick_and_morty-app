@@ -20,4 +20,6 @@ interface RickAndMortyService {
     suspend fun getEpisodeById(@Path("id") id: Int): Episode
     @GET("location")
     suspend fun getLocations(): LocationResponse
+    @GET("character/{ids}")
+    suspend fun getMultipleCharactersById(@Path("ids") ids: List<Int>): List<Character>
 }
